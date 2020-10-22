@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Menu for space.wav-b138c4f591d9a69baa9c403bf0f5ec2b.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/OST/Menu for space.wav"
+dest_files=[ "res://.import/Menu for space.wav-b138c4f591d9a69baa9c403bf0f5ec2b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

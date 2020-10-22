@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://data/Environment/GroundTiles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://data/Environment/StaticGroundTiles.gd" type="Script" id=2]
+
+[node name="StaticGroundTiles" instance=ExtResource( 1 )]
+modulate = Color( 0.8, 0.8, 0.8, 1 )
+collision_layer = 64
+collision_mask = 27
+script = ExtResource( 2 )

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://data/Areas/Area.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Planets/AlienWorld.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 96.4285
+
+[node name="AlienPlanet" instance=ExtResource( 1 )]
+selection_color = Color( 1, 1, 1, 1 )
+scale_value = 1.1
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+region_enabled = false
+
+[node name="CollisionPolygon2D" parent="." index="3"]
+polygon = PoolVector2Array( -2.94603, -29.7771, 25.5218, -22.6602, 33.7625, -62.7399, 61.1066, -63.4891, 68.5982, -39.1416, 50.993, -24.1585, 36.7591, -16.2924, 56.2371, 4.30934, 58.8591, 54.8772, 33.3879, 89.7129, 17.6557, 97.9535, -30.2901, 96.0807, -57.6342, 67.6128, -66.6241, 32.028, -53.1393, -6.1788, -59.1326, -23.7839, -73.3665, -21.911, -86.8512, -36.8941, -80.858, -58.245, -59.5071, -59.7433, -45.2732, -45.5094, -48.2698, -32.0246, -39.6546, -17.0415 )
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 1 )

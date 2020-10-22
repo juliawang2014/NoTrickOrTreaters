@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/Fonts/CommandWheel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://data/UI/CommandWheel.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="CommandWheel" type="Node2D"]
+z_index = 10
+
+[node name="CommandWheel" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stay" type="ToolButton" parent="CommandWheel"]
+margin_left = -168.0
+margin_top = -40.0
+margin_right = -91.0
+margin_bottom = 42.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+text = "Stay"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Follow" type="ToolButton" parent="CommandWheel"]
+margin_left = 88.0
+margin_top = -40.0
+margin_right = 207.0
+margin_bottom = 42.0
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 12 )
+custom_fonts/font = ExtResource( 1 )
+text = "Follow"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CommandWheel"]
+anims/fade = SubResource( 6 )
+[connection signal="pressed" from="CommandWheel/Stay" to="CommandWheel" method="_on_Stay_pressed"]
+[connection signal="pressed" from="CommandWheel/Follow" to="CommandWheel" method="_on_Follow_pressed"]

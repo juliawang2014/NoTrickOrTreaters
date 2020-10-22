@@ -1,0 +1,184 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://data/UI/Cutscene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://data/UI/Ending.gd" type="Script" id=2]
+[ext_resource path="res://assets/Actor/EyeParent.png" type="Texture" id=3]
+[ext_resource path="res://assets/Actor/Eye_Front_View.png" type="Texture" id=4]
+[ext_resource path="res://assets/Planets/EyeWorld.png" type="Texture" id=5]
+[ext_resource path="res://assets/Planets/AlienWorld.png" type="Texture" id=6]
+[ext_resource path="res://assets/Planets/Overworlds2.png" type="Texture" id=7]
+[ext_resource path="res://assets/Actor/CANDY_KID_SPRITE_SHEET.png" type="Texture" id=8]
+[ext_resource path="res://assets/Actor/CandyCornParent.png" type="Texture" id=9]
+[ext_resource path="res://assets/Actor/Alien_Front_View.png" type="Texture" id=10]
+[ext_resource path="res://assets/Actor/AlienParent.png" type="Texture" id=11]
+[ext_resource path="res://assets/Actor/ScientistIdle.png" type="Texture" id=12]
+
+[node name="Ending" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scenes" type="Node2D" parent="." index="5"]
+
+[node name="Scene0" type="Node2D" parent="Scenes" index="0"]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="AlienWorld" type="Sprite" parent="Scenes/Scene0" index="0"]
+position = Vector2( 480, 296 )
+texture = ExtResource( 6 )
+
+[node name="EyeWorld" type="Sprite" parent="Scenes/Scene0" index="1"]
+position = Vector2( 224, 336 )
+texture = ExtResource( 5 )
+
+[node name="Overworlds2" type="Sprite" parent="Scenes/Scene0" index="2"]
+position = Vector2( 736, 312 )
+texture = ExtResource( 7 )
+
+[node name="Eye_Front_View" type="Sprite" parent="Scenes/Scene0" index="3"]
+position = Vector2( 232, 264 )
+texture = ExtResource( 4 )
+hframes = 7
+
+[node name="EyeParent" type="Sprite" parent="Scenes/Scene0/Eye_Front_View" index="0"]
+position = Vector2( -32, -8 )
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="CANDY_KID_SPRITE_SHEET" type="Sprite" parent="Scenes/Scene0" index="4"]
+position = Vector2( 712, 264 )
+texture = ExtResource( 8 )
+hframes = 3
+
+[node name="CandyCornParent" type="Sprite" parent="Scenes/Scene0/CANDY_KID_SPRITE_SHEET" index="0"]
+position = Vector2( 24, -16 )
+texture = ExtResource( 9 )
+hframes = 8
+
+[node name="Alien_Front_View" type="Sprite" parent="Scenes/Scene0" index="5"]
+position = Vector2( 464, 256 )
+texture = ExtResource( 10 )
+hframes = 7
+
+[node name="AlienParent" type="Sprite" parent="Scenes/Scene0/Alien_Front_View" index="0"]
+position = Vector2( 24, -16 )
+texture = ExtResource( 11 )
+hframes = 8
+
+[node name="Scene1" type="Node2D" parent="Scenes" index="1"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -16 )
+
+[node name="ScientistIdle" type="Sprite" parent="Scenes/Scene1" index="0"]
+position = Vector2( 480, 344 )
+texture = ExtResource( 12 )
+hframes = 4
+
+[node name="Scene2" type="Node2D" parent="Scenes" index="2"]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="YSort" type="YSort" parent="Scenes/Scene2" index="0"]
+
+[node name="Eye_Front_View3" type="Sprite" parent="Scenes/Scene2/YSort" index="0"]
+position = Vector2( 360, 320 )
+texture = ExtResource( 4 )
+hframes = 7
+
+[node name="EyeParent" type="Sprite" parent="Scenes/Scene2/YSort/Eye_Front_View3" index="0"]
+visible = false
+position = Vector2( -32, -16 )
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="Eye_Front_View2" type="Sprite" parent="Scenes/Scene2/YSort" index="1"]
+position = Vector2( 408, 328 )
+texture = ExtResource( 4 )
+hframes = 7
+
+[node name="EyeParent" type="Sprite" parent="Scenes/Scene2/YSort/Eye_Front_View2" index="0"]
+position = Vector2( -32, -16 )
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="Eye_Front_View4" type="Sprite" parent="Scenes/Scene2/YSort" index="2"]
+position = Vector2( 600, 312 )
+texture = ExtResource( 4 )
+hframes = 7
+
+[node name="EyeParent" type="Sprite" parent="Scenes/Scene2/YSort/Eye_Front_View4" index="0"]
+position = Vector2( -32, -16 )
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="CANDY_KID_SPRITE_SHEET2" type="Sprite" parent="Scenes/Scene2/YSort" index="3"]
+position = Vector2( 512, 328 )
+texture = ExtResource( 8 )
+hframes = 3
+
+[node name="CandyCornParent" type="Sprite" parent="Scenes/Scene2/YSort/CANDY_KID_SPRITE_SHEET2" index="0"]
+position = Vector2( 24, -16 )
+texture = ExtResource( 9 )
+hframes = 8
+
+[node name="CANDY_KID_SPRITE_SHEET4" type="Sprite" parent="Scenes/Scene2/YSort" index="4"]
+position = Vector2( 416, 304 )
+texture = ExtResource( 8 )
+hframes = 3
+
+[node name="CandyCornParent" type="Sprite" parent="Scenes/Scene2/YSort/CANDY_KID_SPRITE_SHEET4" index="0"]
+position = Vector2( 24, -16 )
+texture = ExtResource( 9 )
+hframes = 8
+
+[node name="CANDY_KID_SPRITE_SHEET3" type="Sprite" parent="Scenes/Scene2/YSort" index="5"]
+position = Vector2( 560, 320 )
+texture = ExtResource( 8 )
+hframes = 3
+
+[node name="CandyCornParent" type="Sprite" parent="Scenes/Scene2/YSort/CANDY_KID_SPRITE_SHEET3" index="0"]
+visible = false
+position = Vector2( 24, -16 )
+texture = ExtResource( 9 )
+hframes = 8
+
+[node name="Alien_Front_View3" type="Sprite" parent="Scenes/Scene2/YSort" index="6"]
+position = Vector2( 424, 312 )
+texture = ExtResource( 10 )
+hframes = 7
+
+[node name="AlienParent" type="Sprite" parent="Scenes/Scene2/YSort/Alien_Front_View3" index="0"]
+visible = false
+position = Vector2( 24, -16 )
+texture = ExtResource( 11 )
+hframes = 8
+
+[node name="Alien_Front_View2" type="Sprite" parent="Scenes/Scene2/YSort" index="7"]
+position = Vector2( 440, 328 )
+texture = ExtResource( 10 )
+hframes = 7
+
+[node name="AlienParent" type="Sprite" parent="Scenes/Scene2/YSort/Alien_Front_View2" index="0"]
+position = Vector2( 24, -16 )
+texture = ExtResource( 11 )
+hframes = 8
+
+[node name="Alien_Front_View4" type="Sprite" parent="Scenes/Scene2/YSort" index="8"]
+position = Vector2( 504, 312 )
+texture = ExtResource( 10 )
+hframes = 7
+
+[node name="AlienParent" type="Sprite" parent="Scenes/Scene2/YSort/Alien_Front_View4" index="0"]
+position = Vector2( 24, -16 )
+texture = ExtResource( 11 )
+hframes = 8
+
+[node name="ScientistIdle2" type="Sprite" parent="Scenes/Scene2/YSort" index="9"]
+position = Vector2( 480, 328 )
+texture = ExtResource( 12 )
+hframes = 4

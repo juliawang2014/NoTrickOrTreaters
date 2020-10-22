@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://data/Actors/Child.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Actor/Alien_Front_View.png" type="Texture" id=2]
+[ext_resource path="res://assets/Actor/Alien_Side_View.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionPolygon2D:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -7.68859, -14.8638, -10.1386, -7.62523, -7.02042, 15.8722, 8.90439, 15.9836, 9.01575, -14.1956 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "moving"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionPolygon2D:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 2.6681, -16.2001, -7.13178, -7.51387, -7.02042, 15.8722, 8.90439, 15.9836, 9.01575, -14.1956 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 8.03293 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+
+[node name="AlienChild" instance=ExtResource( 1 )]
+speed = 250
+detect_radius = 400.0
+follow_radius = 100.0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+hframes = 7
+frame = 5
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PoolVector2Array( -7.68859, -14.8638, -10.1386, -7.62523, -7.02042, 15.8722, 8.90439, 15.9836, 9.01575, -14.1956 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+anims/idle = SubResource( 1 )
+anims/moving = SubResource( 2 )
+
+[node name="Feet" parent="." index="5"]
+position = Vector2( 0, 8 )
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape2D" parent="Feet" index="0"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" parent="HoverArea" index="0"]
+shape = SubResource( 4 )

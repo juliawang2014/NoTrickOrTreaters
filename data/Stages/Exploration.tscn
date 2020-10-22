@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://data/Environment/GroundTiles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://data/Actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/Stages/Exploration.gd" type="Script" id=3]
+[ext_resource path="res://data/Environment/WaterTexture.tscn" type="PackedScene" id=4]
+[ext_resource path="res://data/Environment/StaticGroundTiles.tscn" type="PackedScene" id=5]
+[ext_resource path="res://data/Environment/BackDecor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://data/UI/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://data/Environment/Background.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/Fonts/SpeechBubble.tres" type="DynamicFont" id=9]
+
+[node name="Exploration" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_offset = Vector2( 0, -270 )
+motion_mirroring = Vector2( 960, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="Background" parent="." instance=ExtResource( 8 )]
+
+[node name="BackDecor" parent="." instance=ExtResource( 6 )]
+
+[node name="GroundTiles" parent="." instance=ExtResource( 1 )]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaterTexture" parent="." instance=ExtResource( 4 )]
+
+[node name="StaticGroundTiles" parent="." instance=ExtResource( 5 )]
+
+[node name="Blocks" type="Node" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[node name="KillFloor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillFloor"]
+
+[node name="EndZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 0, -32, -8, -56, -128, -56, -128, -152, 112, -152, 112, -56, 8, -56 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D"]
+margin_left = -128.0
+margin_top = -146.0
+margin_right = 112.0
+margin_bottom = -56.0
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=5 level=10]You have brought our child home! Thank you![/shake][/center]"
+text = "You have brought our child home! Thank you!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="KillFloor" to="." method="_on_KillFloor_body_entered"]
+[connection signal="body_entered" from="EndZone" to="." method="_on_EndZone_body_entered"]

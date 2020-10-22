@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://data/Actors/Child.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Actor/CANDY_KID_SPRITE_SHEET.png" type="Texture" id=2]
+[ext_resource path="res://assets/Actor/CandyKidSide.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "moving"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6.80935, 6.84889 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+[node name="CandyCornChild" instance=ExtResource( 1 )]
+speed = 325
+jumpForce = 600
+detect_radius = 150.0
+follow_radius = 200.0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+hframes = 9
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PoolVector2Array( -0.269768, -17.8444, -6.28696, -7.22579, -6.40495, 14.7193, 7.16325, 14.8373, 6.45534, -8.16966 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "idle"
+anims/idle = SubResource( 1 )
+anims/moving = SubResource( 4 )
+
+[node name="Feet" parent="." index="5"]
+position = Vector2( 0, 8 )
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape2D" parent="Feet" index="0"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="HoverArea" index="0"]
+shape = SubResource( 3 )

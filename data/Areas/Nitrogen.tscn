@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/Areas/Element.tscn" type="PackedScene" id=1]
+
+[node name="Nitrogen" instance=ExtResource( 1 )]
+selection_color = Color( 0.564706, 0.027451, 0.835294, 1 )
+
+[node name="RichTextLabel" parent="." index="2"]
+bbcode_text = "[center]Nitrogen[/center]"
+text = "Nitrogen"

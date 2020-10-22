@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/Areas/Area.gd" type="Script" id=2]
+
+[node name="Area" type="Area2D"]
+script = ExtResource( 2 )
+selection_color = Color( 0.847059, 0.0745098, 0.0745098, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[connection signal="mouse_entered" from="." to="." method="_on_Planet_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Planet_mouse_exited"]
