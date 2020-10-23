@@ -16,6 +16,7 @@ var eye_planet = 3
 var candy_corn_planet = 4
 var alien_planet = 5
 var level_select = 6
+var ending_state = 7
 var player_pos = Vector2()
 var follow = true
 var stay = false

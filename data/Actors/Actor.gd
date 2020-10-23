@@ -23,6 +23,9 @@ var being_dragged = false
 var snap
 var is_jumping_forever = false
 
+var can_footstep = true
+#var effect
+
 func _physics_process(delta):
 	snap = Vector2.DOWN * 32
 	control(delta)

@@ -13,6 +13,8 @@ func _ready():
 		$Control.hide()
 	if Globals.eye_finished and Globals.alien_finished and Globals.candycorn_finished:
 #		$Control2.show()
+		Globals.current_level = Globals.ending_state
+		Music.change_music(Globals.current_level)
 		ending_instance = ending.instance()
 		ending_instance.connect("cutscene_done", self, "_on_cutscene_done")
 		call_deferred('add_child', ending_instance)
@@ -72,6 +74,8 @@ func zoom_in(planet):
 
 func _on_Credits_return_from_credits():
 	$Control.show()
+	Globals.current_level = Globals.main_menu
+	Music.change_music(Globals.current_level)
 #	$Control2.call_deferred('free')
 
 func _on_cutscene_done(cutscene):

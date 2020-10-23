@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Win State_1.wav-96fb9305f3b4320e7116c3b9b48ae2aa.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/SFX/Win State_1.wav"
+dest_files=[ "res://.import/Win State_1.wav-96fb9305f3b4320e7116c3b9b48ae2aa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

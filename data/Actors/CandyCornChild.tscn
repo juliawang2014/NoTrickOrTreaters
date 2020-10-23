@@ -44,8 +44,22 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 3 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_idle_sounds"
+} ]
+}
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "moving"
 length = 0.6
 loop = true
@@ -85,11 +99,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 9 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 6.80935, 6.84889 )
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 
 [node name="CandyCornChild" instance=ExtResource( 1 )]
 speed = 325
@@ -107,7 +135,7 @@ polygon = PoolVector2Array( -0.269768, -17.8444, -6.28696, -7.22579, -6.40495, 1
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "idle"
 anims/idle = SubResource( 1 )
-anims/moving = SubResource( 4 )
+anims/moving = SubResource( 2 )
 
 [node name="Feet" parent="." index="5"]
 position = Vector2( 0, 8 )
@@ -115,7 +143,10 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="CollisionShape2D" parent="Feet" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D" parent="HoverArea" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
+
+[node name="Footsteps" parent="." index="12"]
+volume_db = 0.0

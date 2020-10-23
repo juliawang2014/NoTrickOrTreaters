@@ -24,4 +24,7 @@ func change_music(stage):
 		Globals.main_menu:
 			var space_ost = load("res://assets/Sounds/OST/Menu for space.wav")
 			stream = space_ost
+		Globals.ending_state:
+			var win_ost = load("res://assets/Sounds/SFX/Win State_1.wav")
+			stream = win_ost
 	play()

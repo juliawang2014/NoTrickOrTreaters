@@ -2,9 +2,12 @@ extends Sprite
 
 var firing = false
 var moving_block = false
+var inside = false
 signal on_left_side
 signal on_right_side
 signal move_block
+signal just_fired
+signal finished_firing
 
 func _ready():
 	if Globals.current_level == Globals.dream_planet:
@@ -16,9 +19,22 @@ func _input(event):
 	if event.is_action_pressed("click") and Globals.current_level != Globals.dream_planet:
 		Globals.firing_gun = true
 		$Laser.visible = true
+		if not inside:
+			play_sound()
+		
 	elif event.is_action_released("click"):
 		Globals.firing_gun = false
 		$Laser.visible = false
+		stop_sound()
+		
+func play_sound():
+	inside = true
+	$GunNoise.play()
+
+func stop_sound():
+	inside = false
+	$GunNoise.stop()
+
 
 func _process(delta):
 #	get_muzzle_position()
@@ -33,13 +49,14 @@ func _process(delta):
 			var target = $RayCast2D.get_collider()
 			if target and (target is TileMap or target.name == "Block") and !moving_block:
 				moving_block = true
-				if target is TileMap and !Globals.dragging_something:
+				if target.name == "GroundTiles" and !Globals.dragging_something:
 					var tile_pos
 	#				if get_muzzle_position():
 	#					tile_pos = target.world_to_map($RayCast2D.get_collision_point()) #- Vector2(1,0)
 	#				else:
 	#					tile_pos = target.world_to_map($RayCast2D.get_collision_point())
-					tile_pos = target.world_to_map($Laser/End/TileTarget.global_position)
+#					tile_pos = target.world_to_map($Laser/End/TileTarget.global_position)
+					tile_pos = target.world_to_map(get_global_mouse_position())
 					target.set_cellv(tile_pos, TileMap.INVALID_CELL)
 	#				print(tile_pos)
 					emit_signal("move_block")

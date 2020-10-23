@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/Actor/ScientistArmWithGun.png" type="Texture" id=1]
 [ext_resource path="res://data/Actors/Gun.gd" type="Script" id=2]
 [ext_resource path="res://shaders/laser.shader" type="Shader" id=3]
+[ext_resource path="res://assets/Sounds/SFX/Gravity_1.wav" type="AudioStream" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -28,6 +29,9 @@ script = ExtResource( 2 )
 
 [node name="GunNoise" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 32, 0 )
+stream = ExtResource( 4 )
+volume_db = 10.0
+bus = "SFX"
 
 [node name="Muzzle" type="Position2D" parent="."]
 position = Vector2( 32, 0 )

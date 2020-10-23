@@ -6,6 +6,8 @@ var new_texture
 var velocity = Vector2()
 var being_dragged = true
 var in_water = false
+var falling = false
+var stopped = false
 
 func _ready():
 	set_texture()
@@ -27,15 +29,32 @@ func _input(event):
 func _process(delta):
 	if being_dragged: #and Globals.can_fire_gun:
 		position = get_global_mouse_position()
+		falling = true
+		stopped = false
 #		velocity = Vector2.ZERO
 	else:
 		if in_water:
 			velocity.y += gravity / 2
 		else:
 			velocity.y += gravity
+#			velocity.y = clamp(velocity.y, 0, 350)
 #		var snap = Vector2.DOWN if is_on_floor() else Vector2.ZERO
 #		velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
+#		if not stopped:
+#		velocity.y = clamp(velocity.y, 0.0, 25.0)
 		velocity = move_and_slide(velocity, Vector2.UP)
+#	if !is_on_floor():
+#		falling = true
+	if falling and is_on_floor() and not Globals.firing_gun:
+#		velocity = move_and_slide(Vector2.ZERO, Vector2.UP)
+		falling = false
+		$LandSounds.play()
+#	var left_ray = $RayCast2D.get_collision_normal()
+#	var right_ray = $RayCast2D2.get_collision_normal()
+#	print(left_ray)
+#	print(right_ray)
+#	if left_ray == Vector2.ZERO or right_ray == Vector2.ZERO:
+#		stopped = true
 
 func set_texture():
 	var v_frames = 10

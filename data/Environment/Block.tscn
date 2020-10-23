@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://data/Environment/Block.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sounds/SFX/Land_1.wav" type="AudioStream" id=2]
 
 [node name="Block" type="KinematicBody2D"]
+input_pickable = true
 collision_layer = 8
 collision_mask = 107
 script = ExtResource( 1 )
@@ -15,5 +17,9 @@ script = ExtResource( 1 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="LandSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+bus = "SFX"
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

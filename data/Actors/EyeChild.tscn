@@ -56,6 +56,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ PoolVector2Array( -0.201111, -16.7331, -16.2192, -8.05664, -11.8715, 16.0829, 11.3715, 16.2598, 17.1518, -9.39148 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_idle_sounds"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "moving"
@@ -109,6 +123,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ PoolVector2Array( -0.201111, -16.7331, -10.713, -9.55833, -9.09882, 16.0239, 8.53983, 16.0239, 7.80793, -10.2258 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 7.78602 )
@@ -120,12 +148,11 @@ speed = 320
 follow_radius = 200.0
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 hframes = 7
-frame = 4
 
 [node name="CollisionPolygon2D" parent="." index="1"]
-polygon = PoolVector2Array( -0.201111, -16.7331, -10.713, -9.55833, -9.09882, 16.0239, 8.53983, 16.0239, 7.80793, -10.2258 )
+polygon = PoolVector2Array( -0.201111, -16.7331, -16.2192, -8.05664, -11.8715, 16.0829, 11.3715, 16.2598, 17.1518, -9.39148 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/idle = SubResource( 1 )
@@ -141,3 +168,6 @@ shape = SubResource( 3 )
 
 [node name="CollisionShape2D" parent="HoverArea" index="0"]
 shape = SubResource( 4 )
+
+[node name="Footsteps" parent="." index="12"]
+volume_db = 0.0

@@ -12,6 +12,8 @@ var hovering = false
 var can_be_caught = false
 var caught = false
 var times_caught = 0
+var can_idle = true
+var effect
 signal captured
 
 func _ready():
@@ -24,6 +26,7 @@ func _ready():
 		$CaptureArea/CollisionShape2D.shape.radius = 30
 	else:
 		$DetectPlayer/CollisionShape2D.shape.radius = follow_radius
+	effect = AudioServer.get_bus_effect(4,0)
 
 func _input(event):
 	if event.is_action_pressed("click") and hovering and !Globals.dragging_something:
@@ -45,6 +48,7 @@ func get_teleported():
 	$Tween.interpolate_property(self, "scale", scale, Vector2(0,1), 
 		1.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	$Tween.start()
+	$TeleportNoise.play()
 
 func check_block_movement():
 	var target = $RayCast2D.get_collider()
@@ -94,18 +98,40 @@ func control(delta):
 #				return
 	if (is_on_wall() and is_on_floor()) or (was_on_floor and !is_on_floor()) or is_jumping_forever:
 		jump(false)
+	if was_on_floor and !is_on_floor():
+		$JumpSounds.play()
 	if is_on_wall() and state == STATES.running:
 		direction *= -1
+	if !is_on_wall():
+		falling = true
+	if falling and is_on_wall():
+		$LandSounds.play()
 	if in_water:
 		compute_movement(in_water_scale, in_water_gravity_scale)
 	else:
 		compute_movement(default_time_scale, default_time_scale)
 
+func play_footstep():
+#	$Footsteps.play()
+	pass
+
 func play_animation(new_state, anim_speed = 1):
 #	if switch == 0:
 #		switch += 1
-		$AnimationPlayer.playback_speed = anim_speed
-		$AnimationPlayer.play(new_state)
+	match new_state:
+		"moving":
+			if can_footstep and is_on_floor():
+				can_footstep = false
+#				$FootstepTimer.start()
+				effect.pitch_scale = randf() * 1.0 + 2.5
+#				if anim_speed == 2:
+##					$Footsteps.pitch_scale = anim_speed
+#					effect.pitch_scale = 1.0/anim_speed
+				$Footsteps.play()
+		"idle":
+			pass
+	$AnimationPlayer.playback_speed = anim_speed
+	$AnimationPlayer.play(new_state)
 
 func _on_DetectPlayer_body_entered(body):
 	if body.name == "Player" and (Globals.current_level == Globals.dream_planet) and not caught:
@@ -131,6 +157,11 @@ func _on_DetectPlayer_body_exited(body):
 		state = STATES.walking
 	player_present = false
 
+func play_idle_sounds():
+	if can_idle:
+		can_idle = false
+		$SoundTimer.start()
+		$IdleSounds.play()
 
 func _on_HoverArea_mouse_entered():
 	hovering = true
@@ -152,3 +183,11 @@ func _on_CaptureArea_body_exited(body):
 
 func _on_Tween_tween_completed(object, key):
 	call_deferred('free')
+
+
+func _on_SoundTimer_timeout():
+	can_idle = true
+
+
+func _on_FootstepTimer_timeout():
+	can_footstep = true

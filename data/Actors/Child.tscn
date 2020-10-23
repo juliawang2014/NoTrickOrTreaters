@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://data/Actors/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://data/Actors/Child.gd" type="Script" id=2]
+[ext_resource path="res://assets/Sounds/SFX/Child_1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/Sounds/SFX/Menu Select_1.wav" type="AudioStream" id=4]
 
 [node name="Child" instance=ExtResource( 1 )]
 collision_layer = 16
@@ -36,6 +38,37 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea" index="0"]
 
 [node name="Tween" type="Tween" parent="." index="11"]
+
+[node name="Footsteps" parent="." index="12"]
+volume_db = -40.0
+pitch_scale = 2.0
+max_distance = 250.0
+bus = "KidsFootsteps"
+
+[node name="JumpSounds" parent="." index="13"]
+max_distance = 1000.0
+
+[node name="LandSounds" parent="." index="14"]
+volume_db = -5.0
+pitch_scale = 3.0
+max_distance = 1000.0
+
+[node name="IdleSounds" type="AudioStreamPlayer2D" parent="." index="15"]
+stream = ExtResource( 3 )
+max_distance = 1000.0
+bus = "SFX"
+
+[node name="SoundTimer" parent="." index="16"]
+wait_time = 10.0
+one_shot = true
+
+[node name="FootstepTimer" type="Timer" parent="." index="17"]
+wait_time = 0.4
+autostart = true
+
+[node name="TeleportNoise" type="AudioStreamPlayer2D" parent="." index="18"]
+stream = ExtResource( 4 )
+bus = "SFX"
 [connection signal="body_entered" from="DetectPlayer" to="." method="_on_DetectPlayer_body_entered"]
 [connection signal="body_exited" from="DetectPlayer" to="." method="_on_DetectPlayer_body_exited"]
 [connection signal="mouse_entered" from="HoverArea" to="." method="_on_HoverArea_mouse_entered"]
@@ -43,3 +76,5 @@ collision_mask = 8
 [connection signal="body_entered" from="CaptureArea" to="." method="_on_CaptureArea_body_entered"]
 [connection signal="body_exited" from="CaptureArea" to="." method="_on_CaptureArea_body_exited"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="SoundTimer" to="." method="_on_SoundTimer_timeout"]
+[connection signal="timeout" from="FootstepTimer" to="." method="_on_FootstepTimer_timeout"]
